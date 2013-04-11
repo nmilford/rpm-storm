@@ -17,7 +17,7 @@
 %define storm_branch 0.9
 %define storm_ver 0.9.0_wip16
 %define storm_version 0.9.0-wip16
-%define release_version 3
+%define release_version 4
 %define storm_home /opt/%{storm_name}-%{storm_version}
 %define etc_storm /etc/%{name}
 %define config_storm %{etc_storm}/conf
@@ -190,10 +190,6 @@ chkconfig --add %{storm_name}-%1 \
 if [ $1 = 0 ]; then \
   service %{storm_name}-%1 stop > /dev/null 2>&1 \
   chkconfig --del %{storm_name}-%1 \
-fi \
-%postun %1 \
-if [ $1 -ge 1 ]; then \
-  service %{storm_name}-%1 condrestart >/dev/null 2>&1 \
 fi
 
 %service_macro nimbus
