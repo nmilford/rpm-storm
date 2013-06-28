@@ -52,7 +52,7 @@ a set of general primitives for doing realtime computation.
 %package nimbus
 Summary: The Storm Nimbus node manages the Storm cluster.
 Group: System/Daemons
-Requires: %{name} = %{version}-%{release}, jzmq
+Requires: %{name} = %{version}-%{release}, jzmq, jdk
 BuildArch: noarch
 %description nimbus
 Nimbus is responsible for distributing code around the Storm cluster, assigning
@@ -61,7 +61,7 @@ tasks to machines, and monitoring for failures.
 %package ui
 Summary: The Storm UI exposes metrics for the Storm cluster.
 Group: System/Daemons
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}-%{release}, jdk
 BuildArch: noarch
 %description ui
 The Storm UI exposes metrics on a web interface on port 8080 to give you
@@ -70,7 +70,7 @@ a high level view of the cluster.
 %package supervisor
 Summary: The Storm Supervisor is a worker process of the Storm cluster.
 Group: System/Daemons
-Requires: %{name} = %{version}-%{release}, jzmq
+Requires: %{name} = %{version}-%{release}, jzmq, jdk
 BuildArch: noarch
 %description supervisor
 The Supervisor listens for work assigned to its machine and starts and stops
