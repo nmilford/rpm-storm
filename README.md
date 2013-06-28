@@ -14,6 +14,6 @@ To build:
 `wget https://raw.github.com/nmilford/specfiles/master/rpm-storm/storm-supervisor -O ~/rpmbuild/SOURCES/storm-supervisor`
 `wget https://raw.github.com/nmilford/specfiles/master/rpm-storm/storm-ui -O ~/rpmbuild/SOURCES/storm-ui`
 `wget https://raw.github.com/nmilford/specfiles/master/rpm-storm/storm.nofiles.conf -O ~/rpmbuild/SOURCES/storm.nofiles.conf`
-`wget https://raw.github.com/nmilford/specfiles/master/rpm-storm/cluster.xml -O ~/rpmbuild/SOURCES/cluster.xml
+`wget https://raw.github.com/nmilford/specfiles/master/rpm-storm/cluster.xml -O ~/rpmbuild/SOURCES/cluster.xml`
 
 `rpmbuild -bb ~/rpmbuild/SPECS/storm.spec`
