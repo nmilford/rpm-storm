@@ -104,6 +104,8 @@ install    -m 644 %{_builddir}/%{storm_name}-%{storm_version}/lib/*            %
 install -d -m 755 %{buildroot}/%{storm_home}/logback/
 install    -m 644 %_sourcedir/cluster.xml                                      %{buildroot}/%{storm_home}/logback/cluster.xml
 
+install -d -m 755 %{buildroot}/%{storm_home}/logs/
+
 install -d -m 755 %{buildroot}/%{storm_home}/public/
 
 install -d -m 755 %{buildroot}/%{storm_home}/public/css/
