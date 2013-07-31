@@ -17,7 +17,7 @@
 %define storm_branch 0.9
 %define storm_ver 0.9.0_wip16
 %define storm_version 0.9.0-wip16
-%define release_version 1
+%define release_version 3
 %define storm_home /opt/%{storm_name}-%{storm_version}
 %define etc_storm /etc/%{name}
 %define config_storm %{etc_storm}/conf
@@ -37,6 +37,8 @@ Source2: storm-ui
 Source3: storm-supervisor
 Source4: storm
 Source5: storm.nofiles.conf
+Source6: storm-nimbus
+Source7: storm-drpc
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-%(%{__id_u} -n)
 Requires: sh-utils, textutils, /usr/sbin/useradd, /usr/sbin/usermod, /sbin/chkconfig, /sbin/service
 Provides: storm
@@ -75,6 +77,16 @@ BuildArch: noarch
 %description supervisor
 The Supervisor listens for work assigned to its machine and starts and stops
 worker processes as necessary based on what Nimbus has assigned to it.
+
+%package drpc
+Summary: Storm Distributed RPC daemon.
+Group: System/Daemons
+Requires: %{name} = %{version}-%{release}, jzmq, jdk
+BuildArch: noarch
+%description drpc
+The DRPC server coordinates receiving an RPC request, sending the request to
+the Storm topology, receiving the results from the Storm topology, and sending
+the results back to the waiting client.
 
 %prep
 %setup -n %{storm_name}-%{storm_version}
@@ -127,6 +139,7 @@ install -d -m 755 %{buildroot}/%{_initrddir}
 install    -m 755 %_sourcedir/storm-nimbus     %{buildroot}/%{_initrddir}/storm-nimbus
 install    -m 755 %_sourcedir/storm-ui         %{buildroot}/%{_initrddir}/storm-ui
 install    -m 755 %_sourcedir/storm-supervisor %{buildroot}/%{_initrddir}/storm-supervisor
+install    -m 755 %_sourcedir/storm-drpc       %{buildroot}/%{_initrddir}/storm-drpc
 install -d -m 755 %{buildroot}/%{_sysconfdir}/sysconfig
 install    -m 644 %_sourcedir/storm            %{buildroot}/%{_sysconfdir}/sysconfig/storm
 install -d -m 755 %{buildroot}/%{_sysconfdir}/security/limits.d/
@@ -186,6 +199,7 @@ fi
 %service_macro nimbus
 %service_macro ui
 %service_macro supervisor
+%service_macro drpc
 
 %changelog
 * Mon May 13 2013 Nathan Milford <nathan@milford.io> - 0.9.0-wip16
