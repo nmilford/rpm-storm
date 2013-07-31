@@ -3,7 +3,7 @@
 # /etc/init.d/storm-ui
 #
 # Startup script for storm-ui
-# 
+#
 # chkconfig: 2345 20 80
 # description: Starts and stops storm-ui
 . /etc/init.d/functions
@@ -35,6 +35,8 @@ stop() {
   else
     pkill -f backtype.storm.daemon.$stormSvc
   fi
+  # Kill any storm processes that are currently starting
+  pkill -f "/usr/bin/python /usr/bin/storm $stormSvc"
 }
 
 restart() {
@@ -48,9 +50,15 @@ status() {
   else
      pid=$(pgrep -f backtype.storm.daemon.$stormSvc)
   fi
-    
+
+  # check if storm is in the process of starting
+  if [ -z $pid ]; then
+     pid=$(pgrep -f "/usr/bin/python /usr/bin/storm $stormSvc")
+  fi
+
   if [ -z $pid ]; then
     echo "storm-$stormSvc is NOT running."
+    return 1
   else
     echo "storm-$stormSvc is running (pid is $pid)."
   fi
