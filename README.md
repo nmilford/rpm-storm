@@ -15,6 +15,8 @@ To build:
 
 `wget https://raw.github.com/nmilford/rpm-storm/master/storm-nimbus -O ~/rpmbuild/SOURCES/storm-nimbus`
 
+`wget https://raw.github.com/nmilford/rpm-storm/master/storm-drpc -O ~/rpmbuild/SOURCES/storm-drpc`
+
 `wget https://raw.github.com/nmilford/rpm-storm/master/storm-supervisor -O ~/rpmbuild/SOURCES/storm-supervisor`
 
 `wget https://raw.github.com/nmilford/rpm-storm/master/storm-ui -O ~/rpmbuild/SOURCES/storm-ui`
