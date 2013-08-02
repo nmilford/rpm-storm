@@ -198,6 +198,9 @@ fi
 %service_macro drpc
 
 %changelog
+* Mon Jul 31 2013 Nathan Milford <nathan@milford.io> - 0.9.0-wip16-4
+- Removed postun macro. Caused scriptlet error on uninstall.
+
 * Mon Jul 31 2013 Nathan Milford <nathan@milford.io> - 0.9.0-wip16-3
 - Bumped RPM release version.
 - Merged DRPC init script and package declaration by Vitaliy Fuks <https://github.com/vitaliyf>
